@@ -2,11 +2,13 @@ package org.generation.italy.eventi;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
+		/*
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Benvento utente, inserisci i dettagli di un nuovo evento!");
 		System.out.print("Inserisci la data dell'evento nell' ordine 'yyyy-MM-dd': ");
@@ -66,7 +68,49 @@ public class Main {
 		}
 		System.out.println("----------------------------");
 		System.out.println("i posti prenotati sono: " + e1.getBookedSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
+		sc.close();
+		*/
+		
+		// milestone 3
+		ProgrammEventi p = new ProgrammEventi("Eventi Musicali");
+		
+		Evento e2 = new Evento("Musica", LocalDate.parse("2023-12-15"), 100);
+		Evento e3 = new Evento("Rap", LocalDate.parse("2023-11-18"), 150);
+		Evento e4 = new Evento("Trap", LocalDate.parse("2023-09-28"), 80);
+		Evento e5 = new Evento("pop", LocalDate.parse("2023-12-28"), 80);
+		
+		// first method
+		p.addEvent(e2);
+		p.addEvent(e3);
+		p.addEvent(e4);
+		p.addEvent(e5);
+		
+		
+		//second method
+		List<Evento> specificData = p.getEvent(LocalDate.parse("2023-09-28"));
+		System.out.println(specificData);
+		System.out.println("-----------------------");
+		
+		// System.out.println(p.getEvent(LocalDate.parse("2023-10-18")));
+		// Third method
+		System.out.print("number of elemnt in the list: ");
+		System.out.println(p.howMany());
+		System.out.println("-----------------------");
+		// Fourth method
+		
+		System.out.println("* clearing the list *");
+		System.out.print("number of element in the list: ");
+		System.out.println(p.empty());
+		System.out.println("-----------------------");
+		
+		//fifth method(comment the one above to make it work)
+		List<Evento> eventi1 = p.sort();
+		
+		for(Evento e : eventi1) {
+			System.out.println(e.getTitle() + " - " +e.getDate() + "\n");
+		}
 		
 	}	
+	
 	
 }
