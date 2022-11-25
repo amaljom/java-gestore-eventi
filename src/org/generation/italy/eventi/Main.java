@@ -25,17 +25,6 @@ public class Main {
 		Evento e1 = new Evento(title, date2, avbSeats);
 		/*
 		try {
-			
-			Evento e1 = new Evento(title, date2, avbSeats);
-			System.out.println(e1.toString());
-		} catch(Exception e) {
-			
-			System.err.println(e.getMessage());
-		}
-		*/
-		// Evento e1 = new Evento(title, date2, avbSeats);
-		// prenota
-		try {
 			System.out.println("Quanti posti vorresti prenotare? ");
 			int seatToBook = sc.nextInt();
 			int i = 0;
@@ -50,13 +39,25 @@ public class Main {
 			
 			System.err.println(e.getMessage());
 		}
-		
+		*/
 		System.out.println("----------------------------");
-		System.out.println("i posti totali sono: " + e1.getAvbSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
+		System.out.println("i posti totali sono: " + e1.getBookedSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
 		
 		//--------------------------------------------------
 		
 		try {
+			System.out.println("Quanti posti vorresti prenotare? ");
+			int seatToBook = sc.nextInt();
+			int i = 0;
+			if(seatToBook > 0) {
+				for (i = 0; i < seatToBook; i++) {
+					System.out.println(e1.prenota());
+				}
+				System.out.println("hai prenotato " + i + " posti");
+			}else
+				System.out.println("inserire un numero valido di posti da prenotare!");
+			
+			// *******
 			System.out.println("vorresti disdire dei posti? \n si-->1\n no-->0");
 			int choice = sc.nextInt();
 			
@@ -64,8 +65,7 @@ public class Main {
 			if(choice == 1) {
 				System.out.print("quanto posti vorresti vorresti disdire? ");
 				int n = sc.nextInt();
-				int i = 0;
-				if(n > 0) {
+				if(n > 0 && e1.getBookedSeats() >= n) {
 					for (i = 0; i < n; i++) {
 						System.out.println(e1.disdici());
 					}
@@ -81,7 +81,7 @@ public class Main {
 			System.err.println(e.getMessage());
 		}
 		System.out.println("----------------------------");
-		System.out.println("i posti prenotati sono: " + e1.getAvbSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
+		System.out.println("i posti prenotati sono: " + e1.getBookedSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
 		
 	}	
 	
