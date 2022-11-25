@@ -23,23 +23,7 @@ public class Main {
 		int avbSeats = sc.nextInt();
 		// instanziamento evento
 		Evento e1 = new Evento(title, date2, avbSeats);
-		/*
-		try {
-			System.out.println("Quanti posti vorresti prenotare? ");
-			int seatToBook = sc.nextInt();
-			int i = 0;
-			if(seatToBook > 0) {
-				for (i = 0; i < seatToBook; i++) {
-					System.out.println(e1.prenota());
-				}
-				System.out.println("hai prenotato " + i + " posti");
-			}else
-				System.out.println("inserire un numero valido di posti da prenotare!");
-		}catch(Exception e) {
-			
-			System.err.println(e.getMessage());
-		}
-		*/
+		
 		System.out.println("----------------------------");
 		System.out.println("i posti totali sono: " + e1.getBookedSeats() + "\nI posti disponibili ancora sono: " + e1.availebeleSeatPublic());
 		
