@@ -1,7 +1,9 @@
 package org.generation.italy.eventi;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -71,6 +73,8 @@ public class Main {
 		sc.close();
 		*/
 		
+		// ********************************************************
+		/*
 		// milestone 3
 		ProgrammEventi p = new ProgrammEventi("Eventi Musicali");
 		
@@ -109,8 +113,18 @@ public class Main {
 		for(Evento e : eventi1) {
 			System.out.println(e.getTitle() + " - " +e.getDate() + "\n");
 		}
+		*/
+		// ********************************************************************
 		
+		// milestone 4
+		
+		Concerto c1 = new Concerto("Metallica", LocalDate.parse("2023-08-20"), 300, LocalTime.parse("18:20:30"), BigDecimal.valueOf(30.99));
+		
+		System.out.println(c1.toString()); 
+
+	
 	}	
+	
 	
 	
 }

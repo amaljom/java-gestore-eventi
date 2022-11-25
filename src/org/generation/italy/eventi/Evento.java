@@ -1,6 +1,8 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Evento {
@@ -106,6 +108,13 @@ public class Evento {
 		
 	}	
 	
+	public String dateFormatter() {
+		int year = date.getYear();
+		int month = date.getMonthValue();
+		int day = date.getDayOfMonth();
+		
+		return year + "/" +  month + "/" + day;
+	}
 	// toString
 	
 	@Override
