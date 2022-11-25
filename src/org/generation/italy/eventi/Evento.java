@@ -1,6 +1,7 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Evento {
 	//Properties
@@ -27,14 +28,25 @@ public class Evento {
 	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDate date){
 		LocalDate today = LocalDate.now();
-		LocalDate pastDate = date;
 		
-		boolean isBefore = today.isBefore(pastDate);
+		boolean isBefore = today.isBefore(date);
 		if(isBefore) {
 			this.date = date;
+		}else {
+			while(!today.isBefore(date)) {
+				Scanner s = new Scanner(System.in);
+				System.out.println("inserisci una data valida: ");
+				String data = s.nextLine();
+				LocalDate dateNew = LocalDate.parse(data); 
+				if(today.isBefore(dateNew)) {
+					date = dateNew;
+				}
+			}
+			this.date = date;
 		}
+			
 	}
 	//Seats
 	public int getAvbSeats() {
@@ -52,17 +64,20 @@ public class Evento {
 	
 	//Public methods
 	//First method
-	public String prenota() {
+	public String prenota() throws Exception {
 		LocalDate today = LocalDate.now();
-		LocalDate pastDate = date;
+		LocalDate eventDate = date;
 		
-		boolean isBefore = today.isBefore(pastDate);
+		boolean isBefore = today.isBefore(eventDate);
 		if(isBefore && availebeleSeat()) {
 			this.bookedSeats++;
-			return "seat has been booked";
-		} else {
-			return "cannot book this seat";
+			return "un posto è stato prenotato";
+		} else if(today.isAfter(eventDate)) {
+			throw new Exception("L'evento ha gia avuto luogo");
+		} else if(!availebeleSeat()) {
+			throw new Exception("Non ci sono piu posti disponibili");
 		}
+		return "-----------------";
 	}
 
 	private boolean availebeleSeat() {
@@ -71,19 +86,23 @@ public class Evento {
 		}
 		return false;
 	}
-	
+	public int availebeleSeatPublic() {
+		
+			return getAvbSeats() - getBookedSeats();
+	}
 	// Second method
-	public String disdici() {
+	public String disdici() throws Exception{
 		LocalDate today = LocalDate.now();
 		LocalDate pastDate = date;
 		
-		boolean isAfter = today.isAfter(pastDate);
-		if(isAfter && getBookedSeats() > 0) {
+		boolean isBefore = today.isBefore(pastDate);
+		if(isBefore && getBookedSeats() > 0) {
 			this.bookedSeats--;
-			return "your reservation has been deleted";
-		}else {
-			return "error occured, cannot delete this reservation";
+			return "prenotazione cancellata";
+		}else if(getBookedSeats() == 0) {
+			throw new Exception("Non ci sono prenotazione da eliminare");
 		}
+		return "----------------";
 		
 	}	
 	
